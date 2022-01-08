@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_Salon.ListPage"
+              xmlns:local="clr-namespace:Proiect_Salon">
+    <ContentPage.Content xmlns:local="clr-namespace:Proiect_Salon">
+        <StackLayout Margin="13" >
+            <Label TextColor="Black" FontAttributes="Italic" FontSize="Large">Numele si prenumele dumneavoastra</Label>
+            <Editor Text="{Binding Nume_si_prenume}" TextColor="Black" HeightRequest="50">
+                <Editor.Behaviors>
+                    <local:ValidationBehaviour/>
+                </Editor.Behaviors>
+            </Editor>
+            <Editor Placeholder="Cum a fost la noi?" Text="{Binding Recenzie}" TextColor="Black" HeightRequest="100" >
+                <Editor.Behaviors>
+                    <local:ValidationBehaviour/>
+                </Editor.Behaviors>
+            </Editor>
+            <Editor Placeholder="Oferiti o parere/nota asupra personalului." TextColor="Black" HeightRequest="100" >
+                <Editor.Behaviors>
+                    <local:ValidationBehaviour/>
+                </Editor.Behaviors>
+            </Editor>
+            <Editor Placeholder="Oferiti o parere/nota serviciului." TextColor="Black" HeightRequest="100" >
+                <Editor.Behaviors>
+                    <local:ValidationBehaviour/>
+                </Editor.Behaviors>
+            </Editor>
+            <Picker x:Name="selectare"  SelectedItem="{Binding Denumire}" Title="Alege un serviciu" FontSize="Large" TitleColor="Black" HeightRequest="80">
+                <Picker.ItemsSource TextColor="Black">
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Machiaj</x:String>
+                        <x:String>Manichiura</x:String>
+                        <x:String>Pedichiura</x:String>
+                        <x:String>Pensat</x:String>
+                        <x:String>Tuns</x:String>
+                        <x:String>Vopsit</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Salveaza" Clicked="OnSaveButtonClicked" BackgroundColor="Pink" />
+                <Button Grid.Column="1" Text="Sterge" Clicked="OnDeleteButtonClicked" BackgroundColor="Pink"/>
+                <ListView Grid.Row="1" Grid.ColumnSpan="2" x:Name="recenziiView" Margin="20">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Detail="{Binding Descriere}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
